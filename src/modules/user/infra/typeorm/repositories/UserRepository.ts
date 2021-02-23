@@ -1,9 +1,9 @@
-import { getRepository, Repository } from "typeorm";
-import ICreateUserDTO from "../../../dtos/ICreateUserDTO";
-import IUserRepository from "../../../repositories/IUserRepository";
-import User from "../entities/User";
+import { getRepository, Repository } from 'typeorm';
+import ICreateUserDTO from '../../../dtos/ICreateUserDTO';
+import IUserRepository from '../../../repositories/IUserRepository';
+import User from '../entities/User';
 
-class UserRepository implements IUserRepository{
+class UserRepository implements IUserRepository {
   private ormRepository: Repository<User>;
 
   constructor() {
@@ -21,6 +21,6 @@ class UserRepository implements IUserRepository{
     const user = await this.ormRepository.findOne({ email });
     return user;
   }
-};
+}
 
 export default UserRepository;

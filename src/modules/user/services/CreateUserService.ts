@@ -1,11 +1,11 @@
-import { inject, injectable } from "tsyringe";
-import AppError from "../../../shared/errors/AppError";
-import IUserRepository from "../repositories/IUserRepository";
+import { inject, injectable } from 'tsyringe';
+import AppError from '../../../shared/errors/AppError';
+import IUserRepository from '../repositories/IUserRepository';
 
 interface IRequest {
   name: string;
   email: string;
-};
+}
 
 @injectable()
 class CreateUserService {
@@ -21,6 +21,6 @@ class CreateUserService {
     const user = await this.userRepository.create({ name, email });
     return user;
   }
-};
+}
 
 export default CreateUserService;
