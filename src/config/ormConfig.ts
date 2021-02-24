@@ -1,18 +1,24 @@
 import { ConnectionOptions } from 'typeorm';
+import dotenv from 'dotenv';
+
+dotenv.config({
+  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
+});
 
 const ormConfig: ConnectionOptions = {
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'postgres',
-  password: 'nlw4',
-  database: 'nlw4',
-  entities: ['./src/modules/**/infra/typeorm/entities/*.ts'],
-  migrations: ['./src/shared/infra/typeorm/migrations/*.ts'],
-  
+  host: process.env.TYPEORM_HOST,
+  port: Number(process.env.TYPEORM_PORT),
+  username: process.env.TYPEORM_USERNAME,
+  password: process.env.TYPEORM_PASSWORD,
+  database: process.env.TYPEORM_DATABASE,
+  dropSchema: process.env.TYPEORM_DROPSCHEMA === 'true',
+  entities: [String(process.env.TYPEORM_ENTITIES)],
+  migrations: [String(process.env.TYPEORM_MIGRATIONS)],
+
   cli: {
-    migrationsDir: './src/shared/infra/typeorm/migrations',
-  }
-}
+    migrationsDir: process.env.TYPEORM_MIGRATIONS_DIR,
+  },
+};
 
 export default ormConfig;
