@@ -9,7 +9,7 @@ class UserController {
     const createUserService = container.resolve(CreateUserService);
     const user = await createUserService.execute({ name, email });
 
-    return response.json(user);
+    return response.status(201).json(user);
   }
 }
 
