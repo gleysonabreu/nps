@@ -21,6 +21,11 @@ class SurveyRepository implements ISurveyRepository {
     const surveys = await this.ormRepository.find();
     return surveys;
   }
+
+  async findOne(id: string): Promise<Survey | undefined> {
+    const survey = await this.ormRepository.findOne(id);
+    return survey;
+  }
 }
 
 export default SurveyRepository;
